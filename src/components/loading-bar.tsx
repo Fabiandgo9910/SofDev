@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export function LoadingBar() {
+function LoadingBarInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [visible, setVisible] = useState(false);
@@ -25,5 +25,13 @@ export function LoadingBar() {
         }`}
       />
     </div>
+  );
+}
+
+export function LoadingBar() {
+  return (
+    <Suspense fallback={null}>
+      <LoadingBarInner />
+    </Suspense>
   );
 }

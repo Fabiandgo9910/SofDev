@@ -151,7 +151,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
                     <Star key={i} size={16} fill="currentColor" />
                   ))}
                 </div>
-                <p className="mt-3 text-sm opacity-80">"{review.review_text}"</p>
+                <p className="mt-3 text-sm opacity-80">&ldquo;{review.review_text}&rdquo;</p>
                 <p className="mt-4 text-sm font-medium">{review.author_name}</p>
               </GlassCard>
             ))}

@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
       from: process.env.CONTACT_EMAIL_FROM!,
       to: process.env.CONTACT_EMAIL_TO!,
       subject: `Nuevo contacto de ${parsed.data.fullName} — SofDev`,
-      replyTo: parsed.data.email,
+      reply_to: parsed.data.email,
       text: [
         `Nombre: ${parsed.data.fullName}`,
         `Email: ${parsed.data.email}`,
