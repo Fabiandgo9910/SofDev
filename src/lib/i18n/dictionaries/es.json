@@ -1,0 +1,11 @@
+{
+  "nav": { "home": "Inicio", "about": "Quiénes somos", "team": "Equipo", "services": "Servicios", "projects": "Proyectos", "blog": "Blog", "reviews": "Reseñas", "faq": "FAQ", "contact": "Contáctanos" },
+  "hero": { "cta_primary": "Hablemos de tu proyecto", "cta_secondary": "Ver servicios" },
+  "sections": { "partners": "Empresas que confían en nosotros", "featured_projects": "Proyectos destacados", "featured_reviews": "Lo que dicen de nosotros", "latest_posts": "Últimas publicaciones del blog" },
+  "footer": { "rights": "Todos los derechos reservados.", "privacy": "Política de privacidad", "terms": "Términos y condiciones" },
+  "contact_form": { "name": "Nombre completo", "email": "Correo electrónico", "phone": "Teléfono (opcional)", "company": "Empresa (opcional)", "message": "Cuéntanos sobre tu proyecto", "submit": "Enviar mensaje", "sending": "Enviando...", "success": "¡Gracias! Te responderemos muy pronto.", "error": "Hubo un problema al enviar el mensaje. Inténtalo de nuevo." },
+  "cookies": { "message": "Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio.", "accept": "Aceptar todas", "reject": "Rechazar", "customize": "Configurar" },
+  "faq_search": "Buscar en las preguntas frecuentes...",
+  "back": "Volver",
+  "back_to_top": "Subir arriba"
+}
