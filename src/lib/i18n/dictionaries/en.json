@@ -1,8 +1,9 @@
 {
   "nav": { "home": "Home", "about": "About us", "team": "Team", "services": "Services", "projects": "Projects", "blog": "Blog", "reviews": "Reviews", "faq": "FAQ", "contact": "Contact" },
   "hero": { "cta_primary": "Let's talk about your project", "cta_secondary": "See services" },
-  "sections": { "partners": "Companies that trust us", "featured_projects": "Featured projects", "featured_reviews": "What people say about us", "latest_posts": "Latest blog posts" },
-  "footer": { "rights": "All rights reserved.", "privacy": "Privacy policy", "terms": "Terms and conditions" },
+  "sections": { "about": "About us", "services_title": "What we do for you", "team": "Our team", "partners": "Companies that trust us", "featured_projects": "Featured projects", "featured_reviews": "What people say about us", "latest_posts": "Latest blog posts", "faq": "Frequently asked questions", "contact": "Let's talk about your project" },
+  "cta": { "read_more": "Read more", "view_all": "View all", "view_all_projects": "View all projects", "meet_team": "Meet the full team", "view_all_faq": "View all questions" },
+  "contact_quick": { "call": "Call", "whatsapp": "WhatsApp", "email": "Email", "intro": "Pick whichever channel you prefer, or write to us directly." },
   "contact_form": { "name": "Full name", "email": "Email", "phone": "Phone (optional)", "company": "Company (optional)", "message": "Tell us about your project", "submit": "Send message", "sending": "Sending...", "success": "Thanks! We'll get back to you shortly.", "error": "There was a problem sending your message. Please try again." },
   "cookies": { "message": "We use cookies to improve your experience and analyze site traffic.", "accept": "Accept all", "reject": "Reject", "customize": "Customize" },
   "faq_search": "Search frequently asked questions...",

@@ -200,6 +200,35 @@ create table public.google_reviews (
 );
 
 -- ---------------------------------------------------------------------------
+-- 8.5 PREGUNTAS FRECUENTES (FAQ)
+-- ---------------------------------------------------------------------------
+create table public.faq_items (
+  id uuid primary key default gen_random_uuid(),
+  locale text not null default 'es' check (locale in ('es','en','pt','it')),
+  question text not null,
+  answer text not null,
+  display_order int not null default 0,
+  is_published boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- ---------------------------------------------------------------------------
+-- 8.6 INFORMACIÓN DE CONTACTO RÁPIDO (fila única / singleton)
+-- Teléfono de llamada, WhatsApp y correo mostrados en el Home, header y footer.
+-- ---------------------------------------------------------------------------
+create table public.contact_info (
+  id boolean primary key default true, -- fuerza una única fila (siempre 'true')
+  phone_number text,           -- ej: '+34 900 000 000' (se usa para el enlace tel:)
+  whatsapp_number text,        -- ej: '34900000000' (solo dígitos, formato internacional, para wa.me)
+  whatsapp_default_message text,
+  contact_email text,
+  updated_by uuid references public.profiles(id),
+  updated_at timestamptz not null default now(),
+  constraint contact_info_singleton check (id = true)
+);
+
+-- ---------------------------------------------------------------------------
 -- 9. LEADS / FORMULARIO DE CONTACTO / MARKETING
 -- ---------------------------------------------------------------------------
 create table public.contact_submissions (
@@ -242,6 +271,8 @@ create table public.cookie_consents (
 -- ============================================================================
 -- 11. ROW LEVEL SECURITY (RLS)
 -- ============================================================================
+alter table public.faq_items enable row level security;
+alter table public.contact_info enable row level security;
 alter table public.profiles enable row level security;
 alter table public.site_content enable row level security;
 alter table public.team_members enable row level security;
@@ -296,6 +327,14 @@ create policy "reviews_public_read" on public.google_reviews for select using (t
 create policy "reviews_admin_write" on public.google_reviews for all
   using (public.is_admin_or_super()) with check (public.is_admin_or_super());
 
+create policy "faq_public_read" on public.faq_items for select using (is_published = true or public.is_admin_or_super());
+create policy "faq_admin_write" on public.faq_items for all
+  using (public.is_admin_or_super()) with check (public.is_admin_or_super());
+
+create policy "contact_info_public_read" on public.contact_info for select using (true);
+create policy "contact_info_admin_write" on public.contact_info for all
+  using (public.is_admin_or_super()) with check (public.is_admin_or_super());
+
 -- LEADS: nadie puede leer desde el cliente salvo admin; inserción pública controlada vía Edge Function (service role)
 create policy "contact_admin_read" on public.contact_submissions for select using (public.is_admin_or_super());
 create policy "contact_admin_manage" on public.contact_submissions for update using (public.is_admin_or_super());
@@ -314,6 +353,17 @@ insert into public.site_content (section_key, locale, title, subtitle, body) val
   ('hero', 'es', 'SofDev', 'Consultoría tecnológica que impulsa tu negocio', 'Diseñamos y desarrollamos soluciones digitales a medida.'),
   ('quienes_somos', 'es', 'Quiénes somos', null, 'Contenido editable desde el panel de administración.')
 on conflict (section_key, locale) do nothing;
+
+insert into public.faq_items (locale, question, answer, display_order) values
+  ('es', '¿Qué servicios ofrece SofDev?', 'Consultoría, diseño y desarrollo de soluciones digitales a medida: webs, aplicaciones, automatizaciones y más.', 1),
+  ('es', '¿Cuánto tarda un proyecto típico?', 'Depende del alcance; tras la primera reunión te damos un cronograma estimado y claro.', 2),
+  ('es', '¿Trabajan con empresas de cualquier tamaño?', 'Sí, adaptamos el alcance y el presupuesto a startups, pymes y grandes empresas.', 3),
+  ('es', '¿Ofrecen mantenimiento después del lanzamiento?', 'Sí, ofrecemos planes de soporte y mantenimiento continuo tras la entrega.', 4)
+on conflict do nothing;
+
+insert into public.contact_info (id, phone_number, whatsapp_number, whatsapp_default_message, contact_email)
+values (true, '+34 900 000 000', '34900000000', 'Hola, me gustaría más información sobre SofDev', 'contacto@sofdev.com')
+on conflict (id) do nothing;
 
 -- ============================================================================
 -- FIN FASE 1 — Esquema de base de datos completo.

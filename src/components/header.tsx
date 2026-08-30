@@ -14,13 +14,13 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
   const links: { href: string; label: string }[] = [
     { href: `/${locale}`, label: dict.nav.home },
-    { href: `/${locale}/quienes-somos`, label: dict.nav.about },
-    { href: `/${locale}/equipo`, label: dict.nav.team },
-    { href: `/${locale}/servicios`, label: dict.nav.services },
-    { href: `/${locale}/proyectos`, label: dict.nav.projects },
+    { href: `/${locale}#nosotros`, label: dict.nav.about },
+    { href: `/${locale}#equipo`, label: dict.nav.team },
+    { href: `/${locale}#servicios`, label: dict.nav.services },
+    { href: `/${locale}#proyectos`, label: dict.nav.projects },
     { href: `/${locale}/blog`, label: dict.nav.blog },
-    { href: `/${locale}/resenas`, label: dict.nav.reviews },
-    { href: `/${locale}/faq`, label: dict.nav.faq },
+    { href: `/${locale}#resenas`, label: dict.nav.reviews },
+    { href: `/${locale}#faq`, label: dict.nav.faq },
   ];
 
   function switchLocale(newLocale: Locale) {
@@ -63,7 +63,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </select>
           <ThemeToggle />
           <Link
-            href={`/${locale}/contacto`}
+            href={`/${locale}#contacto`}
             className="hidden rounded-full bg-gradient-to-r from-brand-500 to-brand-700 px-4 py-2 text-sm font-medium text-white shadow-md sm:inline-block"
           >
             {dict.nav.contact}
@@ -84,7 +84,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           className="glass-panel mx-auto mt-2 flex max-w-6xl flex-col gap-3 rounded-2xl p-5 lg:hidden"
           aria-label="Navegación móvil"
         >
-          {[...links, { href: `/${locale}/contacto`, label: dict.nav.contact }].map((link) => (
+          {[...links, { href: `/${locale}#contacto`, label: dict.nav.contact }].map((link) => (
             <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="focus-ring text-sm font-medium">
               {link.label}
             </Link>

@@ -2,6 +2,15 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.1.0] - Rediseño a landing de una sola página
+
+### Añadido
+- Home rediseñado como landing de una sola página (one-page): Hero, Quiénes somos, Servicios, Proyectos, Empresas, Equipo, Reseñas, Blog, FAQ y Contacto, todo en la misma página con anclas (`#nosotros`, `#servicios`, etc.) y scroll suave.
+- Navegación del header actualizada para desplazarse a las secciones del Home en vez de páginas separadas (las páginas individuales siguen existiendo para SEO y enlaces directos).
+- Gestión desde el admin de: teléfono de llamada, número de WhatsApp (con mensaje predefinido) y correo de contacto (`/admin/settings`), mostrados como botones rápidos en el footer y en la sección de contacto.
+- Preguntas frecuentes ahora gestionables desde el admin (`/admin/faq`) y leídas desde base de datos tanto en `/faq` como en la sección de la landing.
+- Tablas nuevas en Supabase: `contact_info` (fila única) y `faq_items`, con sus políticas RLS.
+
 ## [1.0.0] - Fase 1-5 completas
 
 ### Añadido

@@ -1,8 +1,9 @@
 {
   "nav": { "home": "Inicio", "about": "Quiénes somos", "team": "Equipo", "services": "Servicios", "projects": "Proyectos", "blog": "Blog", "reviews": "Reseñas", "faq": "FAQ", "contact": "Contáctanos" },
   "hero": { "cta_primary": "Hablemos de tu proyecto", "cta_secondary": "Ver servicios" },
-  "sections": { "partners": "Empresas que confían en nosotros", "featured_projects": "Proyectos destacados", "featured_reviews": "Lo que dicen de nosotros", "latest_posts": "Últimas publicaciones del blog" },
-  "footer": { "rights": "Todos los derechos reservados.", "privacy": "Política de privacidad", "terms": "Términos y condiciones" },
+  "sections": { "about": "Quiénes somos", "services_title": "Lo que hacemos por ti", "team": "Nuestro equipo", "partners": "Empresas que confían en nosotros", "featured_projects": "Proyectos destacados", "featured_reviews": "Lo que dicen de nosotros", "latest_posts": "Últimas publicaciones del blog", "faq": "Preguntas frecuentes", "contact": "Hablemos de tu proyecto" },
+  "cta": { "read_more": "Leer más", "view_all": "Ver todas", "view_all_projects": "Ver todos los proyectos", "meet_team": "Conoce al equipo completo", "view_all_faq": "Ver todas las preguntas" },
+  "contact_quick": { "call": "Llamar", "whatsapp": "WhatsApp", "email": "Email", "intro": "Elige la vía que prefieras, o escríbenos directamente." },
   "contact_form": { "name": "Nombre completo", "email": "Correo electrónico", "phone": "Teléfono (opcional)", "company": "Empresa (opcional)", "message": "Cuéntanos sobre tu proyecto", "submit": "Enviar mensaje", "sending": "Enviando...", "success": "¡Gracias! Te responderemos muy pronto.", "error": "Hubo un problema al enviar el mensaje. Inténtalo de nuevo." },
   "cookies": { "message": "Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio.", "accept": "Aceptar todas", "reject": "Rechazar", "customize": "Configurar" },
   "faq_search": "Buscar en las preguntas frecuentes...",

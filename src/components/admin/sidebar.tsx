@@ -15,7 +15,9 @@ const LINKS = [
   { href: "/admin/partners", label: "Empresas" },
   { href: "/admin/blog", label: "Blog" },
   { href: "/admin/reviews", label: "Reseñas" },
+  { href: "/admin/faq", label: "Preguntas frecuentes" },
   { href: "/admin/leads", label: "Mensajes de contacto" },
+  { href: "/admin/settings", label: "Contacto rápido (llamada / WhatsApp / email)" },
 ];
 
 export function AdminSidebar({ isSuperAdmin }: { isSuperAdmin: boolean }) {
