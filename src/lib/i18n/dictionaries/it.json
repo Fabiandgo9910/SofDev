@@ -1,12 +1,66 @@
 {
-  "nav": { "home": "Home", "about": "Chi siamo", "team": "Team", "services": "Servizi", "projects": "Progetti", "blog": "Blog", "reviews": "Recensioni", "faq": "FAQ", "contact": "Contatti" },
-  "hero": { "cta_primary": "Parliamo del tuo progetto", "cta_secondary": "Vedi i servizi" },
-  "sections": { "about": "Chi siamo", "services_title": "Cosa facciamo per te", "team": "Il nostro team", "partners": "Aziende che si fidano di noi", "featured_projects": "Progetti in evidenza", "featured_reviews": "Cosa dicono di noi", "latest_posts": "Ultimi articoli del blog", "faq": "Domande frequenti", "contact": "Parliamo del tuo progetto" },
-  "cta": { "read_more": "Leggi di più", "view_all": "Vedi tutte", "view_all_projects": "Vedi tutti i progetti", "meet_team": "Scopri tutto il team", "view_all_faq": "Vedi tutte le domande" },
-  "contact_quick": { "call": "Chiama", "whatsapp": "WhatsApp", "email": "Email", "intro": "Scegli il canale che preferisci, oppure scrivici direttamente." },
-  "contact_form": { "name": "Nome completo", "email": "Email", "phone": "Telefono (opzionale)", "company": "Azienda (opzionale)", "message": "Raccontaci del tuo progetto", "submit": "Invia messaggio", "sending": "Invio in corso...", "success": "Grazie! Ti risponderemo a breve.", "error": "Si è verificato un problema nell'invio del messaggio. Riprova." },
-  "cookies": { "message": "Utilizziamo i cookie per migliorare la tua esperienza e analizzare il traffico del sito.", "accept": "Accetta tutti", "reject": "Rifiuta", "customize": "Personalizza" },
+  "nav": {
+    "home": "Home",
+    "about": "Chi siamo",
+    "team": "Team",
+    "services": "Servizi",
+    "projects": "Progetti",
+    "blog": "Blog",
+    "reviews": "Recensioni",
+    "faq": "FAQ",
+    "contact": "Contatti"
+  },
+  "hero": {
+    "cta_primary": "Parliamo del tuo progetto",
+    "cta_secondary": "Vedi i servizi"
+  },
+  "sections": {
+    "about": "Chi siamo",
+    "services_title": "Cosa facciamo per te",
+    "team": "Il nostro team",
+    "partners": "Aziende che si fidano di noi",
+    "featured_projects": "Progetti in evidenza",
+    "featured_reviews": "Cosa dicono di noi",
+    "latest_posts": "Ultimi articoli del blog",
+    "faq": "Domande frequenti",
+    "contact": "Parliamo del tuo progetto"
+  },
+  "cta": {
+    "read_more": "Leggi di più",
+    "view_all": "Vedi tutte",
+    "view_all_projects": "Vedi tutti i progetti",
+    "meet_team": "Scopri tutto il team",
+    "view_all_faq": "Vedi tutte le domande"
+  },
+  "contact_quick": {
+    "call": "Chiama",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "intro": "Scegli il canale che preferisci, oppure scrivici direttamente."
+  },
+  "contact_form": {
+    "name": "Nome completo",
+    "email": "Email",
+    "phone": "Telefono (opzionale)",
+    "company": "Azienda (opzionale)",
+    "message": "Raccontaci del tuo progetto",
+    "submit": "Invia messaggio",
+    "sending": "Invio in corso...",
+    "success": "Grazie! Ti risponderemo a breve.",
+    "error": "Si è verificato un problema nell'invio del messaggio. Riprova."
+  },
+  "cookies": {
+    "message": "Utilizziamo i cookie per migliorare la tua esperienza e analizzare il traffico del sito.",
+    "accept": "Accetta tutti",
+    "reject": "Rifiuta",
+    "customize": "Personalizza"
+  },
   "faq_search": "Cerca nelle domande frequenti...",
   "back": "Indietro",
-  "back_to_top": "Torna su"
+  "back_to_top": "Torna su",
+  "footer": {
+    "rights": "Tutti i diritti riservati.",
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini e condizioni"
+  }
 }
