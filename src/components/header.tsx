@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
-import { LOCALES, LOCALE_LABELS, type Locale } from "@/lib/i18n/config";
+import { LOCALES, LOCALE_SHORT_LABELS, type Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
@@ -30,46 +30,46 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 px-4 pt-4">
-      <div className="glass-panel mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-5 py-3">
-        <Link href={`/${locale}`} className="text-lg font-bold tracking-tight">
+    <header className="sticky top-0 z-40 px-2 pt-3 sm:px-4 sm:pt-4">
+      <div className="glass-panel mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-2xl px-3 py-2.5 sm:gap-4 sm:px-5 sm:py-3">
+        <Link href={`/${locale}`} className="shrink-0 text-base font-bold tracking-tight sm:text-lg">
           Sof<span className="text-brand-500">Dev</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegación principal">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="Navegación principal">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="focus-ring text-sm font-medium opacity-80 transition-opacity hover:opacity-100"
+              className="focus-ring whitespace-nowrap text-sm font-medium opacity-80 transition-opacity hover:opacity-100"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <select
             aria-label="Cambiar idioma"
             value={locale}
             onChange={(e) => switchLocale(e.target.value as Locale)}
-            className="focus-ring glass-panel rounded-full px-3 py-2 text-sm"
+            className="focus-ring glass-panel w-[3.75rem] rounded-full px-2 py-2 text-xs sm:w-auto sm:px-3 sm:text-sm"
           >
             {LOCALES.map((l) => (
               <option key={l} value={l}>
-                {LOCALE_LABELS[l]}
+                {LOCALE_SHORT_LABELS[l]}
               </option>
             ))}
           </select>
           <ThemeToggle />
           <Link
             href={`/${locale}#contacto`}
-            className="hidden rounded-full bg-gradient-to-r from-brand-500 to-brand-700 px-4 py-2 text-sm font-medium text-white shadow-md sm:inline-block"
+            className="hidden whitespace-nowrap rounded-full bg-gradient-to-r from-brand-500 to-brand-700 px-4 py-2 text-sm font-medium text-white shadow-md md:inline-block"
           >
             {dict.nav.contact}
           </Link>
           <button
-            className="focus-ring glass-panel flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
+            className="focus-ring glass-panel flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10 xl:hidden"
             aria-label="Abrir menú"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -81,11 +81,16 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
       {open && (
         <nav
-          className="glass-panel mx-auto mt-2 flex max-w-6xl flex-col gap-3 rounded-2xl p-5 lg:hidden"
+          className="glass-panel mx-auto mt-2 flex max-w-6xl flex-col gap-1 rounded-2xl p-4 sm:p-5 xl:hidden"
           aria-label="Navegación móvil"
         >
           {[...links, { href: `/${locale}#contacto`, label: dict.nav.contact }].map((link) => (
-            <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="focus-ring text-sm font-medium">
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="focus-ring rounded-lg px-2 py-2.5 text-sm font-medium transition-colors hover:bg-brand-500/10"
+            >
               {link.label}
             </Link>
           ))}

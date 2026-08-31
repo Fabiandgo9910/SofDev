@@ -29,9 +29,9 @@ export default async function TeamPage({ params }: { params: { locale: Locale } 
                 <Image src={member.photo_url} alt={member.full_name} fill className="object-cover" />
               </div>
             )}
-            <h3 className="font-semibold">{member.full_name}</h3>
-            <p className="text-sm text-brand-500">{member.role_title}</p>
-            {member.bio && <p className="mt-2 text-sm opacity-80">{member.bio}</p>}
+            <h3 className="truncate font-semibold">{member.full_name}</h3>
+            <p className="truncate text-sm text-brand-500">{member.role_title}</p>
+            {member.bio && <p className="mt-2 line-clamp-4 break-words text-sm opacity-80">{member.bio}</p>}
             {member.linkedin_url && (
               <a
                 href={member.linkedin_url}

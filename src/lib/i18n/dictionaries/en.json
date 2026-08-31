@@ -12,7 +12,8 @@
   },
   "hero": {
     "cta_primary": "Let's talk about your project",
-    "cta_secondary": "See services"
+    "cta_secondary": "See services",
+    "eyebrow": "Technology consulting"
   },
   "sections": {
     "about": "About us",

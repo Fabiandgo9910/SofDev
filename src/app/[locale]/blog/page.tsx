@@ -25,14 +25,14 @@ export default async function BlogPage({ params }: { params: { locale: Locale } 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts?.map((post) => (
           <Link key={post.id} href={`/${params.locale}/blog/${post.slug}`}>
-            <GlassCard className="h-full">
+            <GlassCard className="flex h-full flex-col">
               {post.cover_image_url && (
-                <div className="relative mb-4 h-40 w-full overflow-hidden rounded-xl">
+                <div className="relative mb-4 h-40 w-full shrink-0 overflow-hidden rounded-xl">
                   <Image src={post.cover_image_url} alt={post.title} fill className="object-cover" />
                 </div>
               )}
-              <h3 className="font-semibold">{post.title}</h3>
-              <p className="mt-2 text-sm opacity-80">{post.excerpt}</p>
+              <h3 className="line-clamp-2 break-words font-semibold">{post.title}</h3>
+              <p className="mt-2 line-clamp-3 break-words text-sm opacity-80">{post.excerpt}</p>
               {post.published_at && (
                 <time className="mt-3 block text-xs opacity-60" dateTime={post.published_at}>
                   {new Date(post.published_at).toLocaleDateString(params.locale)}

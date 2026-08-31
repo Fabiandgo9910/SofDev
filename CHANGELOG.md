@@ -2,6 +2,18 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.2.0] - Rediseño creativo y responsividad completa
+
+### Añadido / cambiado
+- Hero rediseñado: badge animado, tipografía fluida con `clamp()`, patrón de rejilla decorativo, indicador de scroll y protección de texto largo (`line-clamp`, `break-words`).
+- Protección de layout contra textos largos introducidos desde el admin en todas las tarjetas (servicios, proyectos, equipo, blog, reseñas, empresas, FAQ, quiénes somos): título/descripción con `line-clamp`, tarjetas de igual altura (`flex h-full flex-col` + `mt-auto` en los enlaces), nombres/roles truncados.
+- Header totalmente responsive: selector de idioma compacto (códigos ES/EN/PT/IT), navegación de escritorio a partir de `xl`, menú móvil mejorado.
+- Panel de administración totalmente responsive: sidebar deslizante (off-canvas) en móvil/tablet con barra superior propia, fijo en escritorio (`lg+`); la tabla CRUD se muestra como tarjetas apiladas en móvil y como tabla en pantallas medianas o superiores.
+- Espaciados de sección ajustados por breakpoint para una sensación más cuidada en móvil.
+
+### Corregido
+- Se repuso la clave `footer` que faltaba en los 4 diccionarios de idioma tras el rediseño anterior (causaba error de tipos en las páginas legales).
+
 ## [1.1.0] - Rediseño a landing de una sola página
 
 ### Añadido

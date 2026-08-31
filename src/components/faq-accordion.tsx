@@ -49,7 +49,7 @@ export function FaqAccordion({
               aria-expanded={openId === item.id}
               onClick={() => setOpenId(openId === item.id ? null : item.id)}
             >
-              <span className="font-medium">{item.question}</span>
+              <span className="line-clamp-2 break-words font-medium">{item.question}</span>
               <ChevronDown
                 size={18}
                 className={`shrink-0 transition-transform ${openId === item.id ? "rotate-180" : ""}`}

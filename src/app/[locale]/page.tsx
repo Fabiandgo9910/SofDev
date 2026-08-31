@@ -63,6 +63,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       <section id="inicio" className="section-anchor">
         <Hero
           locale={params.locale}
+          eyebrow={dict.hero.eyebrow}
           title={heroContent?.title ?? "SofDev"}
           subtitle={heroContent?.subtitle ?? "Consultoría tecnológica que impulsa tu negocio."}
           ctaPrimary={dict.hero.cta_primary}
@@ -71,11 +72,11 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       </section>
 
       {/* QUIÉNES SOMOS */}
-      <section id="nosotros" className="section-anchor mx-auto max-w-5xl px-6 py-20">
+      <section id="nosotros" className="section-anchor mx-auto max-w-5xl px-6 py-14 sm:py-20">
         <GlassCard hover={false} className="grid items-center gap-8 md:grid-cols-2">
           <div>
             <SectionHeading eyebrow="SofDev" title={aboutContent?.title ?? dict.sections.about} align="left" />
-            <p className="whitespace-pre-line opacity-80">
+            <p className="line-clamp-6 whitespace-pre-line break-words opacity-80">
               {aboutContent?.body ?? "Contenido editable desde el panel de administración."}
             </p>
             <Link href={`/${params.locale}/quienes-somos`} className="focus-ring mt-6 inline-block text-sm font-medium text-brand-500 hover:underline">
@@ -93,14 +94,14 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {/* SERVICIOS */}
       {!!services?.length && (
-        <section id="servicios" className="section-anchor mx-auto max-w-6xl px-6 py-20">
+        <section id="servicios" className="section-anchor mx-auto max-w-6xl px-6 py-14 sm:py-20">
           <SectionHeading eyebrow={dict.nav.services} title={dict.sections.services_title} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <GlassCard key={service.id}>
-                <h3 className="text-lg font-semibold">{service.title}</h3>
-                <p className="mt-2 text-sm opacity-80">{service.short_description}</p>
-                <Link href={`/${params.locale}/servicios#${service.slug}`} className="focus-ring mt-4 inline-block text-sm font-medium text-brand-500 hover:underline">
+              <GlassCard key={service.id} className="flex h-full flex-col">
+                <h3 className="line-clamp-2 break-words text-lg font-semibold">{service.title}</h3>
+                <p className="mt-2 line-clamp-3 break-words text-sm opacity-80">{service.short_description}</p>
+                <Link href={`/${params.locale}/servicios#${service.slug}`} className="focus-ring mt-auto inline-block pt-4 text-sm font-medium text-brand-500 hover:underline">
                   {dict.cta.read_more} →
                 </Link>
               </GlassCard>
@@ -111,19 +112,19 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {/* PROYECTOS */}
       {!!projects?.length && (
-        <section id="proyectos" className="section-anchor mx-auto max-w-6xl px-6 py-20">
+        <section id="proyectos" className="section-anchor mx-auto max-w-6xl px-6 py-14 sm:py-20">
           <SectionHeading eyebrow={dict.nav.projects} title={dict.sections.featured_projects} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
               <Link key={project.id} href={`/${params.locale}/proyectos/${project.slug}`}>
-                <GlassCard className="h-full">
+                <GlassCard className="flex h-full flex-col">
                   {project.cover_image_url && (
-                    <div className="relative mb-4 h-40 w-full overflow-hidden rounded-xl">
+                    <div className="relative mb-4 h-40 w-full shrink-0 overflow-hidden rounded-xl">
                       <Image src={project.cover_image_url} alt={project.title} fill className="object-cover" />
                     </div>
                   )}
-                  <h3 className="font-semibold">{project.title}</h3>
-                  <p className="mt-2 text-sm opacity-80">{project.summary}</p>
+                  <h3 className="line-clamp-2 break-words font-semibold">{project.title}</h3>
+                  <p className="mt-2 line-clamp-3 break-words text-sm opacity-80">{project.summary}</p>
                 </GlassCard>
               </Link>
             ))}
@@ -138,16 +139,16 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {/* EMPRESAS */}
       {!!partners?.length && (
-        <section id="empresas" className="section-anchor mx-auto max-w-6xl px-6 py-20 text-center">
+        <section id="empresas" className="section-anchor mx-auto max-w-6xl px-6 py-14 sm:py-20 text-center">
           <SectionHeading title={dict.sections.partners} />
           <div className="flex flex-wrap items-center justify-center gap-10 opacity-80">
             {partners.map((partner) =>
               partner.website_url ? (
-                <a key={partner.id} href={partner.website_url} target="_blank" rel="noopener noreferrer">
-                  <Image src={partner.logo_url} alt={partner.name} width={120} height={48} className="grayscale transition hover:grayscale-0" />
+                <a key={partner.id} href={partner.website_url} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                  <Image src={partner.logo_url} alt={partner.name} width={120} height={48} className="h-12 w-auto max-w-[140px] object-contain grayscale transition hover:grayscale-0" />
                 </a>
               ) : (
-                <Image key={partner.id} src={partner.logo_url} alt={partner.name} width={120} height={48} className="grayscale transition hover:grayscale-0" />
+                <Image key={partner.id} src={partner.logo_url} alt={partner.name} width={120} height={48} className="h-12 w-auto max-w-[140px] shrink-0 object-contain grayscale transition hover:grayscale-0" />
               )
             )}
           </div>
@@ -156,18 +157,18 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {/* EQUIPO */}
       {!!team?.length && (
-        <section id="equipo" className="section-anchor mx-auto max-w-6xl px-6 py-20">
+        <section id="equipo" className="section-anchor mx-auto max-w-6xl px-6 py-14 sm:py-20">
           <SectionHeading eyebrow={dict.nav.team} title={dict.sections.team} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
               <GlassCard key={member.id} className="text-center">
                 {member.photo_url && (
-                  <div className="relative mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full">
+                  <div className="relative mx-auto mb-4 h-24 w-24 shrink-0 overflow-hidden rounded-full">
                     <Image src={member.photo_url} alt={member.full_name} fill className="object-cover" />
                   </div>
                 )}
-                <h3 className="font-semibold">{member.full_name}</h3>
-                <p className="text-sm text-brand-500">{member.role_title}</p>
+                <h3 className="truncate font-semibold">{member.full_name}</h3>
+                <p className="truncate text-sm text-brand-500">{member.role_title}</p>
               </GlassCard>
             ))}
           </div>
@@ -181,18 +182,18 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {/* RESEÑAS */}
       {!!reviews?.length && (
-        <section id="resenas" className="section-anchor mx-auto max-w-6xl px-6 py-20">
+        <section id="resenas" className="section-anchor mx-auto max-w-6xl px-6 py-14 sm:py-20">
           <SectionHeading eyebrow={dict.nav.reviews} title={dict.sections.featured_reviews} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {reviews.map((review) => (
-              <GlassCard key={review.id}>
+              <GlassCard key={review.id} className="flex h-full flex-col">
                 <div className="flex gap-1 text-yellow-400" aria-label={`${review.rating} de 5 estrellas`}>
                   {Array.from({ length: review.rating }).map((_, i) => (
                     <Star key={i} size={16} fill="currentColor" />
                   ))}
                 </div>
-                <p className="mt-3 text-sm opacity-80">&ldquo;{review.review_text}&rdquo;</p>
-                <p className="mt-4 text-sm font-medium">{review.author_name}</p>
+                <p className="mt-3 line-clamp-4 break-words text-sm opacity-80">&ldquo;{review.review_text}&rdquo;</p>
+                <p className="mt-auto truncate pt-4 text-sm font-medium">{review.author_name}</p>
               </GlassCard>
             ))}
           </div>
@@ -201,14 +202,14 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {/* BLOG */}
       {!!posts?.length && (
-        <section id="blog" className="section-anchor mx-auto max-w-6xl px-6 py-20">
+        <section id="blog" className="section-anchor mx-auto max-w-6xl px-6 py-14 sm:py-20">
           <SectionHeading eyebrow={dict.nav.blog} title={dict.sections.latest_posts} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <Link key={post.id} href={`/${params.locale}/blog/${post.slug}`}>
-                <GlassCard className="h-full">
-                  <h3 className="font-semibold">{post.title}</h3>
-                  <p className="mt-2 text-sm opacity-80">{post.excerpt}</p>
+                <GlassCard className="flex h-full flex-col">
+                  <h3 className="line-clamp-2 break-words font-semibold">{post.title}</h3>
+                  <p className="mt-2 line-clamp-3 break-words text-sm opacity-80">{post.excerpt}</p>
                 </GlassCard>
               </Link>
             ))}
@@ -218,7 +219,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
 
       {/* FAQ */}
       {!!faqItems?.length && (
-        <section id="faq" className="section-anchor mx-auto max-w-3xl px-6 py-20">
+        <section id="faq" className="section-anchor mx-auto max-w-3xl px-6 py-14 sm:py-20">
           <SectionHeading eyebrow={dict.nav.faq} title={dict.sections.faq} />
           <FaqAccordion items={faqItems} searchPlaceholder={dict.faq_search} showSearch={false} />
           <div className="mt-8 text-center">
@@ -230,7 +231,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       )}
 
       {/* CONTACTO */}
-      <section id="contacto" className="section-anchor mx-auto max-w-2xl px-6 py-20">
+      <section id="contacto" className="section-anchor mx-auto max-w-2xl px-6 py-14 sm:py-20">
         <SectionHeading eyebrow={dict.nav.contact} title={dict.sections.contact} subtitle={dict.contact_quick.intro} />
         <div className="mb-8">
           <ContactQuickActions

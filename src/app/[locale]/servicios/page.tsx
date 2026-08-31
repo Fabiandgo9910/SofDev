@@ -24,8 +24,8 @@ export default async function ServicesPage({ params }: { params: { locale: Local
       <div className="space-y-6">
         {services?.map((service) => (
           <GlassCard key={service.id} id={service.slug}>
-            <h2 className="text-xl font-semibold">{service.title}</h2>
-            <p className="mt-2 opacity-80">{service.short_description}</p>
+            <h2 className="break-words text-xl font-semibold">{service.title}</h2>
+            <p className="mt-2 break-words opacity-80">{service.short_description}</p>
             {service.full_description && (
               <p className="mt-4 whitespace-pre-line text-sm opacity-70">{service.full_description}</p>
             )}

@@ -107,8 +107,8 @@ export function AdminCrudTable({
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">{title}</h1>
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-xl font-bold sm:text-2xl">{title}</h1>
         <GlassButton onClick={openCreate} className="!px-4 !py-2 text-sm">
           <Plus size={16} /> Añadir
         </GlassButton>
@@ -116,7 +116,48 @@ export function AdminCrudTable({
 
       {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
 
-      <GlassCard hover={false} className="overflow-x-auto !p-0">
+      {/* Vista de tarjetas — móvil */}
+      <div className="space-y-3 md:hidden">
+        {loading && <GlassCard hover={false} className="py-6 text-center opacity-60">Cargando...</GlassCard>}
+        {!loading && !rows.length && (
+          <GlassCard hover={false} className="py-6 text-center opacity-60">Todavía no hay elementos.</GlassCard>
+        )}
+        {rows.map((row) => (
+          <GlassCard key={row.id as string} hover={false}>
+            <div className="space-y-1.5">
+              {columns.map((col) => (
+                <div key={col} className="flex items-baseline justify-between gap-3">
+                  <span className="shrink-0 text-xs font-medium uppercase tracking-wide opacity-60">
+                    {fields.find((f) => f.name === col)?.label ?? col}
+                  </span>
+                  <span className="truncate text-right text-sm">
+                    {typeof row[col] === "boolean" ? (row[col] ? "Sí" : "No") : String(row[col] ?? "—")}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 flex justify-end gap-2 border-t border-white/10 pt-3">
+              <button
+                onClick={() => openEdit(row)}
+                aria-label="Editar"
+                className="focus-ring flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm hover:bg-brand-500/10"
+              >
+                <Pencil size={14} /> Editar
+              </button>
+              <button
+                onClick={() => handleDelete(row.id as string)}
+                aria-label="Eliminar"
+                className="focus-ring flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm text-red-500 hover:bg-red-500/10"
+              >
+                <Trash2 size={14} /> Eliminar
+              </button>
+            </div>
+          </GlassCard>
+        ))}
+      </div>
+
+      {/* Vista de tabla — pantallas medianas y superiores */}
+      <GlassCard hover={false} className="hidden overflow-x-auto !p-0 md:block">
         <table className="w-full text-left text-sm">
           <thead>
             <tr className="border-b border-white/10">

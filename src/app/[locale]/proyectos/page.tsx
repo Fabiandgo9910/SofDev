@@ -25,18 +25,18 @@ export default async function ProjectsPage({ params }: { params: { locale: Local
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects?.map((project) => (
           <Link key={project.id} href={`/${params.locale}/proyectos/${project.slug}`}>
-            <GlassCard className="h-full">
+            <GlassCard className="flex h-full flex-col">
               {project.cover_image_url && (
-                <div className="relative mb-4 h-40 w-full overflow-hidden rounded-xl">
+                <div className="relative mb-4 h-40 w-full shrink-0 overflow-hidden rounded-xl">
                   <Image src={project.cover_image_url} alt={project.title} fill className="object-cover" />
                 </div>
               )}
-              <h3 className="font-semibold">{project.title}</h3>
-              <p className="mt-2 text-sm opacity-80">{project.summary}</p>
+              <h3 className="line-clamp-2 break-words font-semibold">{project.title}</h3>
+              <p className="mt-2 line-clamp-3 break-words text-sm opacity-80">{project.summary}</p>
               {!!project.tags?.length && (
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {project.tags.map((tag: string) => (
-                    <span key={tag} className="glass-panel rounded-full px-2 py-0.5 text-xs">
+                  {project.tags.slice(0, 4).map((tag: string) => (
+                    <span key={tag} className="glass-panel max-w-[10rem] truncate rounded-full px-2 py-0.5 text-xs">
                       {tag}
                     </span>
                   ))}

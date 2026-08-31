@@ -23,10 +23,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen flex-col lg:flex-row">
       <AdminSidebar isSuperAdmin={isSuperAdmin} />
-      <div className="flex-1 p-6">
-        {user && <p className="mb-4 text-right text-sm opacity-70">Sesión: {displayName}</p>}
+      <div className="min-w-0 flex-1 p-4 sm:p-6">
+        {user && <p className="mb-4 truncate text-right text-sm opacity-70">Sesión: {displayName}</p>}
         {children}
       </div>
     </div>

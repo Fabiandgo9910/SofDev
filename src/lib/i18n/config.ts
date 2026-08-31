@@ -8,3 +8,10 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   pt: "Português",
   it: "Italiano",
 };
+
+export const LOCALE_SHORT_LABELS: Record<Locale, string> = {
+  es: "ES",
+  en: "EN",
+  pt: "PT",
+  it: "IT",
+};
