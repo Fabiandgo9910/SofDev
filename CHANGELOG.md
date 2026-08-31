@@ -2,6 +2,18 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.3.0] - Pulido visual, navbar fija, WhatsApp flotante, eventos y SEO
+
+### Cambiado
+- Hero: la transición hacia el fondo de la página ya no se corta en seco — la rejilla decorativa y los blobs ahora se difuminan de forma gradual más allá del límite de la sección.
+- Barra de navegación ahora es `fixed` real (antes `sticky`), con un espaciador que compensa su altura para que no tape el contenido.
+
+### Añadido
+- Botón flotante fijo de WhatsApp (visible en todas las páginas, con animación de pulso), leyendo el número desde `/admin/settings`. El botón de "subir arriba" se reubicó para no solaparse con él.
+- Recopilación de eventos: nueva utilidad `trackEvent()` que registra en `marketing_events` (respetando el consentimiento de cookies — no se envía nada si el usuario no aceptó analítica/marketing). Instrumentado en: CTAs del Hero, botones de llamada/WhatsApp/email, envío del formulario de contacto y vistas de página.
+- Nueva política RLS para permitir la inserción pública en `marketing_events` (antes bloqueada por defecto — ver `migration_v1.2.sql`).
+- Mejoras de SEO: se corrigió un bug donde el `canonical` de **todas** las páginas apuntaba por error a la home (estaba definido a nivel de layout); ahora cada página define el suyo propio, con hreflang para los 4 idiomas. JSON-LD `FAQPage` en `/faq` y en la sección FAQ de la landing. JSON-LD de la organización enriquecido con teléfono, email y `aggregateRating` calculado a partir de las reseñas. Panel `/admin` marcado como `noindex`.
+
 ## [1.2.0] - Rediseño creativo y responsividad completa
 
 ### Añadido / cambiado

@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/glass/glass-card";
 
-export async function generateMetadata() {
-  return { title: "Blog" };
+export async function generateMetadata({ params }: { params: { locale: Locale } }) {
+  return buildMetadata({ locale: params.locale, path: "/blog", title: "Blog", description: "Artículos y novedades sobre tecnología, desarrollo y consultoría." });
 }
 
 export default async function BlogPage({ params }: { params: { locale: Locale } }) {

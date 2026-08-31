@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/glass/glass-card";
 
@@ -21,14 +21,16 @@ export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale; slug: string };
-}): Promise<Metadata> {
+}) {
   const project = await getProject(params.locale, params.slug);
   if (!project) return {};
-  return {
+  return buildMetadata({
+    locale: params.locale,
+    path: `/proyectos/${params.slug}`,
     title: project.title,
     description: project.summary,
-    openGraph: { images: project.cover_image_url ? [project.cover_image_url] : [] },
-  };
+    images: project.cover_image_url ? [project.cover_image_url] : undefined,
+  });
 }
 
 export default async function ProjectDetailPage({

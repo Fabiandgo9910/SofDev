@@ -4,6 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import Script from "next/script";
 import { GlassButton } from "@/components/glass/glass-button";
 import { GlassCard } from "@/components/glass/glass-card";
+import { trackEvent } from "@/lib/analytics";
 
 type Dict = {
   name: string;
@@ -56,6 +57,7 @@ export function ContactForm({ dict, locale }: { dict: Dict; locale: string }) {
       }
 
       setStatus("success");
+      trackEvent("contact_form_submit", { locale });
       (e.target as HTMLFormElement).reset();
       setTurnstileToken("");
     } catch (err) {

@@ -19,7 +19,7 @@ export function BackToTopButton({ label }: { label: string }) {
       type="button"
       aria-label={label}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="focus-ring glass-panel fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-200 hover:-translate-y-1 active:scale-95"
+      className="focus-ring glass-panel fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-200 hover:-translate-y-1 active:scale-95"
     >
       <ArrowUp size={20} />
     </button>

@@ -1,10 +1,11 @@
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { ContactForm } from "@/components/contact-form";
 import { ContactQuickActions } from "@/components/contact-quick-actions";
 
-export async function generateMetadata() {
-  return { title: "Contáctanos" };
+export async function generateMetadata({ params }: { params: { locale: Locale } }) {
+  return buildMetadata({ locale: params.locale, path: "/contacto", title: "Contáctanos", description: "Ponte en contacto con SofDev: llamada, WhatsApp, email o formulario." });
 }
 
 export default async function ContactPage({ params }: { params: { locale: Locale } }) {

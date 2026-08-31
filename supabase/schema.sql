@@ -342,6 +342,7 @@ create policy "contact_admin_manage" on public.contact_submissions for update us
 -- con la service_role key, tras pasar Turnstile/reCAPTCHA y rate limiting.
 
 create policy "marketing_admin_read" on public.marketing_events for select using (public.is_admin_or_super());
+create policy "marketing_events_insert_public" on public.marketing_events for insert with check (true);
 
 create policy "cookie_consents_insert_public" on public.cookie_consents for insert with check (true);
 create policy "cookie_consents_admin_read" on public.cookie_consents for select using (public.is_admin_or_super());

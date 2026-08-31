@@ -1,6 +1,7 @@
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { GlassButton } from "./glass/glass-button";
+import { TrackedAnchor } from "./analytics/tracked-anchor";
 
 export async function getContactInfo() {
   const supabase = createClient();
@@ -30,33 +31,36 @@ export async function ContactQuickActions({
     return (
       <div className="flex items-center gap-2">
         {info.phone_number && (
-          <a
+          <TrackedAnchor
             href={`tel:${info.phone_number.replace(/\s+/g, "")}`}
             aria-label={labels?.call ?? "Llamar"}
+            event="call_click"
             className="focus-ring glass-panel flex h-9 w-9 items-center justify-center rounded-full transition-transform hover:scale-110"
           >
             <Phone size={16} />
-          </a>
+          </TrackedAnchor>
         )}
         {whatsappUrl && (
-          <a
+          <TrackedAnchor
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={labels?.whatsapp ?? "WhatsApp"}
+            event="whatsapp_click"
             className="focus-ring glass-panel flex h-9 w-9 items-center justify-center rounded-full transition-transform hover:scale-110"
           >
             <MessageCircle size={16} />
-          </a>
+          </TrackedAnchor>
         )}
         {info.contact_email && (
-          <a
+          <TrackedAnchor
             href={`mailto:${info.contact_email}`}
             aria-label={labels?.email ?? "Email"}
+            event="email_click"
             className="focus-ring glass-panel flex h-9 w-9 items-center justify-center rounded-full transition-transform hover:scale-110"
           >
             <Mail size={16} />
-          </a>
+          </TrackedAnchor>
         )}
       </div>
     );
@@ -65,25 +69,25 @@ export async function ContactQuickActions({
   return (
     <div className="flex flex-wrap justify-center gap-4">
       {info.phone_number && (
-        <a href={`tel:${info.phone_number.replace(/\s+/g, "")}`}>
+        <TrackedAnchor href={`tel:${info.phone_number.replace(/\s+/g, "")}`} event="call_click">
           <GlassButton variant="ghost">
-            <Phone size={18} /> {labels?.call ?? "Llamar"} · {info.phone_number}
+            <Phone size={18} /> <span className="truncate">{labels?.call ?? "Llamar"} · {info.phone_number}</span>
           </GlassButton>
-        </a>
+        </TrackedAnchor>
       )}
       {whatsappUrl && (
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+        <TrackedAnchor href={whatsappUrl} target="_blank" rel="noopener noreferrer" event="whatsapp_click">
           <GlassButton variant="ghost">
             <MessageCircle size={18} /> {labels?.whatsapp ?? "WhatsApp"}
           </GlassButton>
-        </a>
+        </TrackedAnchor>
       )}
       {info.contact_email && (
-        <a href={`mailto:${info.contact_email}`}>
+        <TrackedAnchor href={`mailto:${info.contact_email}`} event="email_click">
           <GlassButton variant="ghost">
-            <Mail size={18} /> {labels?.email ?? "Email"} · {info.contact_email}
+            <Mail size={18} /> <span className="truncate">{labels?.email ?? "Email"} · {info.contact_email}</span>
           </GlassButton>
-        </a>
+        </TrackedAnchor>
       )}
     </div>
   );

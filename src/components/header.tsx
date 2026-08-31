@@ -30,7 +30,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 px-2 pt-3 sm:px-4 sm:pt-4">
+    <header className="fixed inset-x-0 top-0 z-40 px-2 pt-3 sm:px-4 sm:pt-4">
       <div className="glass-panel mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-2xl px-3 py-2.5 sm:gap-4 sm:px-5 sm:py-3">
         <Link href={`/${locale}`} className="shrink-0 text-base font-bold tracking-tight sm:text-lg">
           Sof<span className="text-brand-500">Dev</span>

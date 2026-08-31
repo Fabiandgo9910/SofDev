@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/glass/glass-card";
 
@@ -21,14 +21,16 @@ export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale; slug: string };
-}): Promise<Metadata> {
+}) {
   const post = await getPost(params.locale, params.slug);
   if (!post) return {};
-  return {
+  return buildMetadata({
+    locale: params.locale,
+    path: `/blog/${params.slug}`,
     title: post.meta_title ?? post.title,
     description: post.meta_description ?? post.excerpt,
-    openGraph: { images: post.cover_image_url ? [post.cover_image_url] : [] },
-  };
+    images: post.cover_image_url ? [post.cover_image_url] : undefined,
+  });
 }
 
 export default async function BlogPostPage({
@@ -39,12 +41,19 @@ export default async function BlogPostPage({
   const post = await getPost(params.locale, params.slug);
   if (!post) notFound();
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
+    description: post.meta_description ?? post.excerpt ?? undefined,
     datePublished: post.published_at,
+    dateModified: post.updated_at ?? post.published_at,
+    mainEntityOfPage: `${siteUrl}/${params.locale}/blog/${params.slug}`,
     image: post.cover_image_url ? [post.cover_image_url] : undefined,
+    author: { "@type": "Organization", name: "SofDev" },
+    publisher: { "@type": "Organization", name: "SofDev" },
   };
 
   return (
@@ -60,13 +69,13 @@ export default async function BlogPostPage({
             <Image src={post.cover_image_url} alt={post.title} fill className="object-cover" />
           </div>
         )}
-        <h1 className="text-3xl font-bold">{post.title}</h1>
+        <h1 className="break-words text-3xl font-bold">{post.title}</h1>
         {post.published_at && (
           <time className="mt-2 block text-sm opacity-60" dateTime={post.published_at}>
             {new Date(post.published_at).toLocaleDateString(params.locale)}
           </time>
         )}
-        <div className="prose prose-neutral mt-6 max-w-none whitespace-pre-line dark:prose-invert">
+        <div className="prose prose-neutral mt-6 max-w-none whitespace-pre-line break-words dark:prose-invert">
           {post.content}
         </div>
       </GlassCard>

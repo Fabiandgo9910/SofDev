@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/glass/glass-card";
 
-export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { locale: Locale } }) {
   const supabase = createClient();
   const { data } = await supabase
     .from("site_content")
@@ -11,7 +11,12 @@ export async function generateMetadata({ params }: { params: { locale: Locale } 
     .eq("section_key", "quienes_somos")
     .eq("locale", params.locale)
     .maybeSingle();
-  return { title: data?.title ?? "Quiénes somos", description: data?.subtitle ?? undefined };
+  return buildMetadata({
+    locale: params.locale,
+    path: "/quienes-somos",
+    title: data?.title ?? "Quiénes somos",
+    description: data?.subtitle ?? "Conoce la historia y la misión de SofDev.",
+  });
 }
 
 export default async function AboutPage({ params }: { params: { locale: Locale } }) {

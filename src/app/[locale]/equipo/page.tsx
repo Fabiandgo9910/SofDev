@@ -1,12 +1,17 @@
 import Image from "next/image";
-import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/glass/glass-card";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return { title: "Equipo" };
+export async function generateMetadata({ params }: { params: { locale: Locale } }) {
+  return buildMetadata({
+    locale: params.locale,
+    path: "/equipo",
+    title: "Equipo",
+    description: "Conoce al equipo de SofDev, el talento detrás de cada proyecto.",
+  });
 }
 
 export default async function TeamPage({ params }: { params: { locale: Locale } }) {

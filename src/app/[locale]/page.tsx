@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { Star } from "lucide-react";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata, buildFaqJsonLd } from "@/lib/seo";
 import { createClient } from "@/lib/supabase/server";
 import { Hero } from "@/components/hero";
 import { GlassCard } from "@/components/glass/glass-card";
@@ -13,11 +13,7 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { ContactForm } from "@/components/contact-form";
 import { ContactQuickActions } from "@/components/contact-quick-actions";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: Locale };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { locale: Locale } }) {
   const supabase = createClient();
   const { data } = await supabase
     .from("site_content")
@@ -26,10 +22,12 @@ export async function generateMetadata({
     .eq("locale", params.locale)
     .maybeSingle();
 
-  return {
+  return buildMetadata({
+    locale: params.locale,
+    path: "",
     title: data?.title ?? "SofDev",
     description: data?.subtitle ?? "Consultoría tecnológica que impulsa tu negocio.",
-  };
+  });
 }
 
 export default async function HomePage({ params }: { params: { locale: Locale } }) {
@@ -220,6 +218,11 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
       {/* FAQ */}
       {!!faqItems?.length && (
         <section id="faq" className="section-anchor mx-auto max-w-3xl px-6 py-14 sm:py-20">
+          <script
+            type="application/ld+json"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqJsonLd(faqItems)) }}
+          />
           <SectionHeading eyebrow={dict.nav.faq} title={dict.sections.faq} />
           <FaqAccordion items={faqItems} searchPlaceholder={dict.faq_search} showSearch={false} />
           <div className="mt-8 text-center">

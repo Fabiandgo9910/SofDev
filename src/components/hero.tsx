@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ArrowDown, Sparkles } from "lucide-react";
 import { GlassButton } from "./glass/glass-button";
+import { TrackedLink } from "./analytics/tracked-link";
 import type { Locale } from "@/lib/i18n/config";
 
 export function Hero({
@@ -19,16 +19,18 @@ export function Hero({
   ctaSecondary: string;
 }) {
   return (
-    <section className="relative overflow-hidden px-6 pb-16 pt-20 sm:pb-24 sm:pt-32">
-      {/* Fondo decorativo: rejilla sutil + blobs animados */}
-      <div aria-hidden="true" className="bg-grid-pattern absolute inset-0" />
+    <section className="relative overflow-x-hidden px-6 pb-16 pt-20 sm:pb-24 sm:pt-32">
+      {/* Fondo decorativo: rejilla sutil + blobs animados. Se extiende más allá
+          de la sección y se desvanece de forma gradual (sin overflow-hidden
+          vertical) para evitar un corte brusco contra el fondo de la siguiente sección. */}
+      <div aria-hidden="true" className="bg-grid-pattern absolute inset-x-0 top-0 h-[160%]" />
       <div
         aria-hidden="true"
         className="absolute -left-24 -top-24 h-72 w-72 animate-floaty rounded-full bg-brand-300/40 blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="absolute -bottom-24 -right-24 h-96 w-96 animate-floaty rounded-full bg-brand-500/30 blur-3xl [animation-delay:2s]"
+        className="absolute -bottom-40 -right-24 h-96 w-96 animate-floaty rounded-full bg-brand-500/20 blur-3xl [animation-delay:2s]"
       />
 
       <div className="relative mx-auto max-w-3xl text-center">
@@ -48,12 +50,12 @@ export function Hero({
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link href={`/${locale}#contacto`}>
+          <TrackedLink href={`/${locale}#contacto`} event="hero_cta_primary_click">
             <GlassButton>{ctaPrimary}</GlassButton>
-          </Link>
-          <Link href={`/${locale}#servicios`}>
+          </TrackedLink>
+          <TrackedLink href={`/${locale}#servicios`} event="hero_cta_secondary_click">
             <GlassButton variant="ghost">{ctaSecondary}</GlassButton>
-          </Link>
+          </TrackedLink>
         </div>
       </div>
 

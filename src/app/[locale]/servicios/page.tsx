@@ -1,11 +1,16 @@
-import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/glass/glass-card";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return { title: "Servicios" };
+export async function generateMetadata({ params }: { params: { locale: Locale } }) {
+  return buildMetadata({
+    locale: params.locale,
+    path: "/servicios",
+    title: "Servicios",
+    description: "Descubre los servicios de consultoría y desarrollo a medida de SofDev.",
+  });
 }
 
 export default async function ServicesPage({ params }: { params: { locale: Locale } }) {
