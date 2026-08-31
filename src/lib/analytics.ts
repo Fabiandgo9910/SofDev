@@ -24,14 +24,17 @@ export function trackEvent(eventName: string, metadata: Record<string, unknown> 
   if (!hasTrackingConsent()) return;
 
   const supabase = createClient();
-  void supabase
-    .from("marketing_events")
-    .insert({
-      event_name: eventName,
-      page_path: window.location.pathname,
-      locale: document.documentElement.lang || null,
-      metadata,
-    })
-    .then(() => undefined)
-    .catch(() => undefined);
+
+  (async () => {
+    try {
+      await supabase.from("marketing_events").insert({
+        event_name: eventName,
+        page_path: window.location.pathname,
+        locale: document.documentElement.lang || null,
+        metadata,
+      });
+    } catch {
+      // best-effort: nunca debe romper la interacción del usuario
+    }
+  })();
 }
