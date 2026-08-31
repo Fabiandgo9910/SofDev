@@ -4,6 +4,8 @@ import { buildMetadata } from "@/lib/seo";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/glass/glass-card";
+import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/reveal";
 
 export async function generateMetadata({ params }: { params: { locale: Locale } }) {
   return buildMetadata({ locale: params.locale, path: "/resenas", title: "Reseñas", description: "Lo que dicen nuestros clientes sobre trabajar con SofDev." });
@@ -19,10 +21,11 @@ export default async function ReviewsPage({ params }: { params: { locale: Locale
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="mb-10 text-3xl font-bold">{dict.nav.reviews}</h1>
+      <SectionHeading align="left" title={dict.nav.reviews} icon={Star} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {reviews?.map((review) => (
-          <GlassCard key={review.id} className="flex h-full flex-col">
+        {reviews?.map((review, idx) => (
+          <Reveal key={review.id} delay={idx * 60}>
+          <GlassCard className="flex h-full flex-col">
             <div className="flex gap-1 text-yellow-400" aria-label={`${review.rating} de 5 estrellas`}>
               {Array.from({ length: review.rating }).map((_, i) => (
                 <Star key={i} size={16} fill="currentColor" />
@@ -34,6 +37,7 @@ export default async function ReviewsPage({ params }: { params: { locale: Locale
               <p className="text-xs opacity-60">{new Date(review.review_date).toLocaleDateString(params.locale)}</p>
             )}
           </GlassCard>
+          </Reveal>
         ))}
       </div>
     </section>

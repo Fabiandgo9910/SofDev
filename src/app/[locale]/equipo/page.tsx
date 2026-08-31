@@ -3,7 +3,10 @@ import type { Locale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createClient } from "@/lib/supabase/server";
+import { Users } from "lucide-react";
 import { GlassCard } from "@/components/glass/glass-card";
+import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/reveal";
 
 export async function generateMetadata({ params }: { params: { locale: Locale } }) {
   return buildMetadata({
@@ -25,10 +28,11 @@ export default async function TeamPage({ params }: { params: { locale: Locale } 
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="mb-10 text-3xl font-bold">{dict.nav.team}</h1>
+      <SectionHeading align="left" title={dict.nav.team} icon={Users} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {members?.map((member) => (
-          <GlassCard key={member.id} className="text-center">
+        {members?.map((member, i) => (
+          <Reveal key={member.id} delay={i * 60}>
+          <GlassCard className="text-center">
             {member.photo_url && (
               <div className="relative mx-auto mb-4 h-28 w-28 overflow-hidden rounded-full">
                 <Image src={member.photo_url} alt={member.full_name} fill className="object-cover" />
@@ -48,6 +52,7 @@ export default async function TeamPage({ params }: { params: { locale: Locale } 
               </a>
             )}
           </GlassCard>
+          </Reveal>
         ))}
       </div>
     </section>

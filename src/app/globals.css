@@ -47,8 +47,61 @@ body {
   outline-offset: 2px;
 }
 
-.text-balance {
-  text-wrap: balance;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(77, 125, 255, 0.35); }
+  50% { box-shadow: 0 0 0 10px rgba(77, 125, 255, 0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.9s ease both;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Estado inicial/objetivo para el componente <Reveal> (fade + slide-up al entrar en pantalla) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Línea decorativa animada bajo el eyebrow de cada sección */
+.eyebrow-underline {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2px;
+  background: linear-gradient(90deg, #4d7dff, transparent);
+  animation: growLine 1s ease both;
+}
+@keyframes growLine {
+  from { width: 0; opacity: 0; }
+  to { width: 2.5rem; opacity: 1; }
 }
 
 .bg-grid-pattern {
@@ -68,3 +121,12 @@ body {
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-thumb { background: rgba(120,130,200,0.4); border-radius: 999px; }
+
+/* Paneles de fondo suave para dar ritmo visual, alternando con secciones planas */
+.section-tint {
+  border-radius: 2.5rem;
+  background: linear-gradient(180deg, rgba(77, 125, 255, 0.07), rgba(77, 125, 255, 0) 70%);
+}
+.dark .section-tint {
+  background: linear-gradient(180deg, rgba(77, 125, 255, 0.12), rgba(77, 125, 255, 0) 70%);
+}

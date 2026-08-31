@@ -2,6 +2,15 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.4.0] - Pulido creativo integral
+
+### Añadido
+- Componente `<Reveal>`: anima con fade + slide-up la aparición de cualquier bloque al hacer scroll (respeta `prefers-reduced-motion`). Aplicado a todas las tarjetas y bloques de todas las secciones, tanto en el Home como en las páginas individuales (Equipo, Servicios, Proyectos, Blog, Reseñas), con animación escalonada dentro de cada grid.
+- Icono distintivo por sección (`SectionHeading` ahora admite `icon`) en Quiénes somos, Servicios, Proyectos, Empresas, Equipo, Reseñas, Blog, FAQ y Contacto — mismo lenguaje visual en todo el sitio.
+- Ritmo visual entre secciones: paneles de fondo suaves y degradados (`.section-tint`) alternando con secciones planas, en vez de un bloque plano continuo.
+- Hero renovado: anillo decorativo animado, blobs de color adicionales, animaciones de entrada escalonadas en cada elemento (badge → título → subtítulo → botones → pastillas), pastillas de valor ("Diseño a medida", "Entrega ágil", "Soporte continuo") y brillo pulsante en el botón principal.
+- Micro-interacciones: flechas que se desplazan al pasar el ratón sobre "Leer más", zoom suave en imágenes de proyectos al hover, anillo de color en las fotos del equipo.
+
 ## [1.3.0] - Pulido visual, navbar fija, WhatsApp flotante, eventos y SEO
 
 ### Cambiado

@@ -4,7 +4,10 @@ import type { Locale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createClient } from "@/lib/supabase/server";
+import { Rocket } from "lucide-react";
 import { GlassCard } from "@/components/glass/glass-card";
+import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/reveal";
 
 export async function generateMetadata({ params }: { params: { locale: Locale } }) {
   return buildMetadata({ locale: params.locale, path: "/proyectos", title: "Proyectos realizados", description: "Explora los proyectos que hemos desarrollado para nuestros clientes." });
@@ -22,10 +25,11 @@ export default async function ProjectsPage({ params }: { params: { locale: Local
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="mb-10 text-3xl font-bold">{dict.nav.projects}</h1>
+      <SectionHeading align="left" title={dict.nav.projects} icon={Rocket} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects?.map((project) => (
-          <Link key={project.id} href={`/${params.locale}/proyectos/${project.slug}`}>
+        {projects?.map((project, i) => (
+          <Reveal key={project.id} delay={i * 60}>
+          <Link href={`/${params.locale}/proyectos/${project.slug}`}>
             <GlassCard className="flex h-full flex-col">
               {project.cover_image_url && (
                 <div className="relative mb-4 h-40 w-full shrink-0 overflow-hidden rounded-xl">
@@ -45,6 +49,7 @@ export default async function ProjectsPage({ params }: { params: { locale: Local
               )}
             </GlassCard>
           </Link>
+          </Reveal>
         ))}
       </div>
     </section>
