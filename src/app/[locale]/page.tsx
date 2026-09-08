@@ -67,6 +67,7 @@ export default async function HomePage({ params }: { params: { locale: Locale } 
           subtitle={heroContent?.subtitle ?? "Consultoría tecnológica que impulsa tu negocio."}
           ctaPrimary={dict.hero.cta_primary}
           ctaSecondary={dict.hero.cta_secondary}
+          features={dict.hero.features}
         />
       </section>
 

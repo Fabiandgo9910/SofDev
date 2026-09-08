@@ -13,7 +13,12 @@
   "hero": {
     "cta_primary": "Hablemos de tu proyecto",
     "cta_secondary": "Ver servicios",
-    "eyebrow": "Consultoría tecnológica"
+    "eyebrow": "Consultoría tecnológica",
+    "features": [
+      "Diseño a medida",
+      "Entrega ágil",
+      "Soporte continuo"
+    ]
   },
   "sections": {
     "about": "Quiénes somos",

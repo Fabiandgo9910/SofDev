@@ -122,6 +122,80 @@ body {
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-thumb { background: rgba(120,130,200,0.4); border-radius: 999px; }
 
+/* Variante de glass más opaca/nítida, para paneles que necesitan más contraste
+   (p.ej. el mockup decorativo del Hero) sin perder el efecto de vidrio. */
+.glass-panel-strong {
+  background: linear-gradient(160deg, var(--glass-bg), var(--glass-bg));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 24px 60px -12px rgba(20, 20, 60, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.dark .glass-panel-strong {
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Halo que sigue al cursor dentro de un contenedor .spotlight (se actualiza
+   con las variables --spot-x/--spot-y desde JS). Se desactiva si el usuario
+   prefiere menos movimiento y no tiene efecto en táctil (no hay puntero). */
+.spotlight {
+  --spot-x: 50%;
+  --spot-y: 30%;
+  position: relative;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(480px circle at var(--spot-x) var(--spot-y), rgba(77, 125, 255, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Textura de grano muy sutil para dar profundidad al fondo del Hero */
+.bg-grain {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* Borde con brillo en movimiento (shimmer) para el panel mockup del Hero.
+   Se define aquí de forma explícita (y no solo en tailwind.config.ts) porque
+   se usa dentro de CSS "a mano" (::after), no como clase utilitaria
+   animate-*, así que el JIT de Tailwind no la generaría por sí solo. */
+@keyframes shimmer {
+  0% { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+.shimmer-border {
+  position: relative;
+}
+.shimmer-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(77, 125, 255, 0.7) 50%,
+    transparent 80%
+  );
+  background-size: 250% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: shimmer 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
 /* Paneles de fondo suave para dar ritmo visual, alternando con secciones planas */
 .section-tint {
   border-radius: 2.5rem;
