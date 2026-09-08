@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import Script from "next/script";
+import { Building2, Mail, MessageSquareText, Phone, User } from "lucide-react";
 import { GlassButton } from "@/components/glass/glass-button";
 import { GlassCard } from "@/components/glass/glass-card";
 import { trackEvent } from "@/lib/analytics";
@@ -17,6 +18,15 @@ type Dict = {
   success: string;
   error: string;
 };
+
+function FieldLabel({ icon: Icon, htmlFor, children }: { icon: typeof User; htmlFor: string; children: string }) {
+  return (
+    <label htmlFor={htmlFor} className="mb-1.5 flex items-center gap-1.5 text-sm font-medium opacity-90">
+      <Icon size={14} className="text-brand-500" />
+      {children}
+    </label>
+  );
+}
 
 export function ContactForm({ dict, locale }: { dict: Dict; locale: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -92,51 +102,53 @@ export function ContactForm({ dict, locale }: { dict: Dict; locale: string }) {
           aria-hidden="true"
         />
 
-        <div>
-          <label htmlFor="fullName" className="mb-1 block text-sm font-medium">
-            {dict.name}
-          </label>
-          <input
-            id="fullName"
-            name="fullName"
-            required
-            minLength={2}
-            className="focus-ring glass-panel w-full rounded-xl px-4 py-3"
-          />
-        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <FieldLabel icon={User} htmlFor="fullName">
+              {dict.name}
+            </FieldLabel>
+            <input
+              id="fullName"
+              name="fullName"
+              required
+              minLength={2}
+              className="focus-ring glass-panel w-full rounded-xl px-4 py-3"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="email" className="mb-1 block text-sm font-medium">
-            {dict.email}
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="focus-ring glass-panel w-full rounded-xl px-4 py-3"
-          />
+          <div>
+            <FieldLabel icon={Mail} htmlFor="email">
+              {dict.email}
+            </FieldLabel>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              className="focus-ring glass-panel w-full rounded-xl px-4 py-3"
+            />
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="phone" className="mb-1 block text-sm font-medium">
+            <FieldLabel icon={Phone} htmlFor="phone">
               {dict.phone}
-            </label>
+            </FieldLabel>
             <input id="phone" name="phone" className="focus-ring glass-panel w-full rounded-xl px-4 py-3" />
           </div>
           <div>
-            <label htmlFor="company" className="mb-1 block text-sm font-medium">
+            <FieldLabel icon={Building2} htmlFor="company">
               {dict.company}
-            </label>
+            </FieldLabel>
             <input id="company" name="company" className="focus-ring glass-panel w-full rounded-xl px-4 py-3" />
           </div>
         </div>
 
         <div>
-          <label htmlFor="message" className="mb-1 block text-sm font-medium">
+          <FieldLabel icon={MessageSquareText} htmlFor="message">
             {dict.message}
-          </label>
+          </FieldLabel>
           <textarea
             id="message"
             name="message"
@@ -149,7 +161,7 @@ export function ContactForm({ dict, locale }: { dict: Dict; locale: string }) {
 
         <div ref={turnstileRef} />
 
-        <GlassButton type="submit" disabled={status === "sending"}>
+        <GlassButton type="submit" disabled={status === "sending"} className="w-full sm:w-auto">
           {status === "sending" ? dict.sending : dict.submit}
         </GlassButton>
 

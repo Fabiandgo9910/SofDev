@@ -60,12 +60,12 @@ export function Hero({
       <div
         ref={stageRef}
         onPointerMove={handlePointerMove}
-        className="spotlight relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10"
+        className="spotlight relative mx-auto grid max-w-6xl items-center gap-16 md:grid-cols-[1.05fr_0.95fr] md:gap-10"
       >
         {/* ---------- Columna de texto ---------- */}
-        <div className="text-center lg:text-left">
+        <div className="text-center md:text-left">
           <div
-            className="animate-fade-in-up glass-panel mx-auto inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium lg:mx-0"
+            className="animate-fade-in-up glass-panel mx-auto inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium md:mx-0"
             style={{ animationDelay: "0ms" }}
           >
             <Sparkles size={14} className="shrink-0 text-brand-500" />
@@ -73,7 +73,7 @@ export function Hero({
           </div>
 
           <h1
-            className="animate-fade-in-up text-balance mx-auto mt-6 max-w-2xl break-words text-[clamp(2.25rem,6vw,3.75rem)] font-bold leading-[1.1] tracking-tight lg:mx-0"
+            className="animate-fade-in-up text-balance mx-auto mt-6 max-w-2xl break-words text-[clamp(2.25rem,6vw,3.75rem)] font-bold leading-[1.1] tracking-tight md:mx-0"
             style={{ animationDelay: "80ms" }}
           >
             <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-brand-300 bg-clip-text text-transparent">
@@ -82,14 +82,14 @@ export function Hero({
           </h1>
 
           <p
-            className="animate-fade-in-up text-balance mx-auto mt-6 line-clamp-4 max-w-2xl break-words text-base opacity-80 sm:text-lg lg:mx-0"
+            className="animate-fade-in-up text-balance mx-auto mt-6 line-clamp-3 max-w-xl break-words text-base font-light opacity-75 sm:text-lg md:mx-0"
             style={{ animationDelay: "160ms" }}
           >
             {subtitle}
           </p>
 
           <div
-            className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
+            className="animate-fade-in-up mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start"
             style={{ animationDelay: "240ms" }}
           >
             <TrackedLink href={`/${locale}#contacto`} event="hero_cta_primary_click">
@@ -103,7 +103,7 @@ export function Hero({
           {/* Chips de características: ahora son mini tarjetas de vidrio
               independientes en vez de un texto plano en lista. */}
           <ul
-            className="animate-fade-in-up mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3 lg:mx-0"
+            className="animate-fade-in-up mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3 md:mx-0"
             style={{ animationDelay: "320ms" }}
           >
             {features.map((label, i) => {
@@ -122,7 +122,7 @@ export function Hero({
         </div>
 
         {/* ---------- Panel decorativo tipo "producto" (glassmorphism) ---------- */}
-        <div className="animate-rise-in relative mx-auto hidden w-full max-w-md lg:block" style={{ animationDelay: "200ms" }} aria-hidden="true">
+        <div className="animate-rise-in relative mx-auto hidden w-full max-w-md md:block" style={{ animationDelay: "200ms" }} aria-hidden="true">
           {/* Anillo orbital con un icono girando alrededor del panel */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-0 w-0">
             <div className="animate-orbit absolute [--orbit-radius:11rem]">
@@ -166,11 +166,6 @@ export function Hero({
             </div>
           </div>
 
-          {/* Insignia flotante */}
-          <div className="glass-panel animate-floaty absolute -bottom-5 -left-6 flex items-center gap-2 rounded-2xl px-3.5 py-2.5 text-xs font-medium [animation-delay:1s]">
-            <ShieldCheck size={15} className="text-brand-500" />
-            Next.js · Supabase · Vercel
-          </div>
         </div>
       </div>
 

@@ -42,7 +42,14 @@
     "call": "Ligar",
     "whatsapp": "WhatsApp",
     "email": "E-mail",
-    "intro": "Escolha o canal que preferir, ou escreva diretamente para nós."
+    "intro": "Escolha o canal que preferir, ou escreva diretamente para nós.",
+    "whatsapp_hint": "Resposta mais rápida",
+    "how_it_works": "Como funciona",
+    "steps": [
+      "Conte-nos o que você precisa",
+      "Respondemos em pouco tempo",
+      "Começamos a trabalhar no seu projeto"
+    ]
   },
   "contact_form": {
     "name": "Nome completo",
