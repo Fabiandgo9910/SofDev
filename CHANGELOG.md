@@ -2,6 +2,22 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.5.0] - Hero rediseñado, contacto con WhatsApp destacado y subida de imágenes
+
+### Corregido
+- Hero: la capa decorativa de fondo (rejilla, blobs, anillo) tenía una altura del 160% sin límite de recorte vertical y se filtraba por debajo de la sección, solapándose con "Quiénes somos" y generando una sensación de scroll roto. Ahora queda contenida exactamente al alto real del Hero.
+
+### Añadido
+- Hero: nuevo layout de dos columnas (desde `md`) con un panel decorativo tipo "producto" (glassmorphism, gráfico de barras, icono orbitando, borde con brillo) en vez de solo texto centrado. Halo que sigue al cursor. Pastillas de características ahora traducidas en los 4 idiomas (antes solo en español).
+- Contacto: tarjetas de "Llamar / WhatsApp / Email" rediseñadas, con la de WhatsApp destacada (color de marca, halo pulsante, insignia visual propia con icono de chat + teléfono). Esquema visual de 3 pasos ("Cómo funciona") junto al formulario. Iconos en cada campo del formulario.
+- Panel admin: nuevo campo de subida de imagen (`ImageUploadField`) que reemplaza los campos de "URL de la foto/imagen" en Equipo, Proyectos, Blog, Empresas y Reseñas — ahora se sube el archivo directamente y se guarda su URL pública, sin tener que alojar la imagen en otro sitio primero. Requiere el bucket de Storage creado en `migration_v1.3.sql`.
+
+### Cambiado
+- Hero: se quitó la insignia flotante "Next.js · Supabase · Vercel"; el subtítulo se aligeró visualmente (menos líneas, tono más suave) apoyándose más en el panel gráfico.
+
+### Eliminado
+- Archivo `contacto/contact-form.tsx` duplicado y sin usar (la página `/contacto` ya usaba el componente compartido `@/components/contact-form`).
+
 ## [1.4.0] - Pulido creativo integral
 
 ### Añadido

@@ -13,7 +13,7 @@ export default function AdminTeamPage() {
         { name: "full_name", label: "Nombre completo", type: "text", required: true },
         { name: "role_title", label: "Cargo", type: "text", required: true },
         { name: "bio", label: "Biografía", type: "textarea" },
-        { name: "photo_url", label: "URL de la foto", type: "url" },
+        { name: "photo_url", label: "Foto", type: "image" },
         { name: "linkedin_url", label: "URL de LinkedIn", type: "url" },
         { name: "display_order", label: "Orden", type: "number" },
         { name: "is_published", label: "Publicado", type: "checkbox" },

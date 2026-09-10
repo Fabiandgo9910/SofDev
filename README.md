@@ -29,13 +29,17 @@ Rellena `.env.local` con tus claves reales (ver sección 4).
 2. Ve a **SQL Editor** → pega el contenido completo de `supabase/schema.sql` → ejecútalo.
    Esto crea todas las tablas, los roles (`editor`, `admin`, `super_admin`), las políticas RLS
    y algunos datos semilla.
-3. Ve a **Authentication → Providers** y confirma que "Email" esté habilitado.
-4. Ve a **Authentication → URL Configuration** y añade tu dominio de producción y
+3. Ejecuta también, en orden, las migraciones incrementales de `supabase/` (todas son seguras
+   de volver a ejecutar): `migration_v1.1.sql`, `migration_v1.2.sql` y `migration_v1.3.sql`
+   (esta última crea el bucket de Storage `media` que usa el panel admin para subir imágenes
+   de equipo, proyectos, blog, partners y reseñas — sin ella, la subida de imágenes fallará).
+4. Ve a **Authentication → Providers** y confirma que "Email" esté habilitado.
+5. Ve a **Authentication → URL Configuration** y añade tu dominio de producción y
    `http://localhost:3000` a las Redirect URLs.
-5. Registra tu primer usuario (desde `/admin/login` no funcionará hasta tener un usuario —
+6. Registra tu primer usuario (desde `/admin/login` no funcionará hasta tener un usuario —
    créalo manualmente en **Authentication → Users → Add user**, o usa el flujo de invitación
    una vez tengas ya un super_admin).
-6. Convierte ese primer usuario en super_admin ejecutando en el SQL Editor:
+7. Convierte ese primer usuario en super_admin ejecutando en el SQL Editor:
 
 ```sql
 update public.profiles set role = 'super_admin' where id = '<uuid-del-usuario>';

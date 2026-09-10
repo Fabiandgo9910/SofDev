@@ -27,7 +27,7 @@ export default function AdminProjectsPage() {
         { name: "client_name", label: "Cliente", type: "text" },
         { name: "summary", label: "Resumen", type: "textarea" },
         { name: "content", label: "Contenido completo", type: "textarea" },
-        { name: "cover_image_url", label: "Imagen de portada (URL)", type: "url" },
+        { name: "cover_image_url", label: "Imagen de portada", type: "image" },
         { name: "project_url", label: "URL del proyecto", type: "url" },
         { name: "display_order", label: "Orden", type: "number" },
         { name: "is_published", label: "Publicado", type: "checkbox" },

@@ -27,7 +27,7 @@ export default function AdminBlogPage() {
         },
         { name: "excerpt", label: "Extracto", type: "textarea" },
         { name: "content", label: "Contenido", type: "textarea", required: true },
-        { name: "cover_image_url", label: "Imagen de portada (URL)", type: "url" },
+        { name: "cover_image_url", label: "Imagen de portada", type: "image" },
         { name: "meta_title", label: "Meta título (SEO)", type: "text" },
         { name: "meta_description", label: "Meta descripción (SEO)", type: "textarea" },
         { name: "published_at", label: "Fecha de publicación (AAAA-MM-DD)", type: "text" },

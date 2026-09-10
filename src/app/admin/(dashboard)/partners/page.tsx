@@ -11,7 +11,7 @@ export default function AdminPartnersPage() {
       defaultValues={{ display_order: 0, is_published: true }}
       fields={[
         { name: "name", label: "Nombre de la empresa", type: "text", required: true },
-        { name: "logo_url", label: "URL del logo", type: "url", required: true },
+        { name: "logo_url", label: "Logo de la empresa", type: "image", required: true },
         { name: "website_url", label: "Sitio web", type: "url" },
         { name: "display_order", label: "Orden", type: "number" },
         { name: "is_published", label: "Publicado", type: "checkbox" },

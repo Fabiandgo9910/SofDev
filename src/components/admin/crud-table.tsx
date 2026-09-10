@@ -5,11 +5,12 @@ import { Pencil, Plus, Trash2, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { GlassCard } from "@/components/glass/glass-card";
 import { GlassButton } from "@/components/glass/glass-button";
+import { ImageUploadField } from "./image-upload-field";
 
 export type FieldConfig = {
   name: string;
   label: string;
-  type: "text" | "textarea" | "number" | "checkbox" | "url" | "select";
+  type: "text" | "textarea" | "number" | "checkbox" | "url" | "select" | "image";
   options?: { value: string; label: string }[];
   required?: boolean;
 };
@@ -268,6 +269,13 @@ export function AdminCrudTable({
                         </option>
                       ))}
                     </select>
+                  )}
+                  {field.type === "image" && (
+                    <ImageUploadField
+                      value={(editing[field.name] as string) ?? ""}
+                      onChange={(url) => setEditing({ ...editing, [field.name]: url })}
+                      folder={table}
+                    />
                   )}
                   {["text", "number", "url"].includes(field.type) && (
                     <input

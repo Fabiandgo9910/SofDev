@@ -11,7 +11,7 @@ export default function AdminReviewsPage() {
       defaultValues={{ rating: 5, display_order: 0, is_featured: true }}
       fields={[
         { name: "author_name", label: "Nombre del autor", type: "text", required: true },
-        { name: "author_photo_url", label: "Foto del autor (URL)", type: "url" },
+        { name: "author_photo_url", label: "Foto del autor", type: "image" },
         { name: "rating", label: "Puntuación (1-5)", type: "number", required: true },
         { name: "review_text", label: "Texto de la reseña", type: "textarea" },
         { name: "review_date", label: "Fecha (AAAA-MM-DD)", type: "text" },
